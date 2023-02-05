@@ -4,6 +4,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.*;
 @WebServlet(
         name = "TemperatureConverter",
@@ -25,8 +26,10 @@ public class TemperatureConverter extends HttpServlet {
             results = convert(temp, unit);
         } catch(IllegalArgumentException e) {
             results.put("userTempError", "That temperature is invalid");
-
         }
+
+
+
         if(unit.equals("C")) {
             results.put("unit", "F");
         } else {
@@ -39,14 +42,17 @@ public class TemperatureConverter extends HttpServlet {
     public Map<String, String> convert(String temp, String unit) {
         Map<String, String> results = new HashMap<>();
 
-        isAValidTemp(temp, unit);
+        isAValidNumber(temp);
+        if(!isAValidTemp(temp, unit)) {
+            throw new NumberFormatException();
+        }
 
         if(unit.equals("C")) {
-            double convertedTemp = Double.parseDouble(temp) * (9.0/5.0) + 32;
+            Double convertedTemp = Double.parseDouble(temp) * (9.0/5.0) + 32;
             temp = Double.toString(convertedTemp);
         }
         if(unit.equals("F")) {
-            double convertedTemp = (Double.parseDouble(temp) - 32.0) * 5.0/9.0;
+            Double convertedTemp = (Double.parseDouble(temp) - 32.0) * 5.0/9.0;
             temp = Double.toString(convertedTemp);
         }
 
@@ -55,7 +61,7 @@ public class TemperatureConverter extends HttpServlet {
         return results;
     }
 
-    public boolean isAValidTemp(String temp, String unit) {
+    public boolean isAValidNumber(String temp) {
         try {
             Double.parseDouble(temp);
             return true;
@@ -64,6 +70,15 @@ public class TemperatureConverter extends HttpServlet {
         }
     }
 
+    public boolean isAValidTemp(String temp, String unit) {
+        boolean result = true;
+        if(Double.parseDouble(temp) < -459.67 && unit.equals("F") || Double.parseDouble(temp) < -273.15 && unit.equals("C")) {
+            result = false;
+        }
+        return result;
+    }
+
 }
+
 
 
