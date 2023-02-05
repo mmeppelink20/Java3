@@ -4,6 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ public class AddServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("WEB-INF/add.jsp").forward(request, response);
     }
 
     @Override
@@ -25,6 +26,8 @@ public class AddServlet extends HttpServlet {
         String firstNumber = request.getParameter("firstNumber");
         String secondNumber = request.getParameter("secondNumber");
         Map<String, String> results = add(firstNumber, secondNumber);
+        request.setAttribute("results", results);
+        request.getRequestDispatcher("WEB-INF/add.jsp").forward(request, response);
     }
 
     public Map<String, String> add(String firstNumber, String secondNumber) {
@@ -32,19 +35,22 @@ public class AddServlet extends HttpServlet {
 
         boolean firstNumberValid = isANumber(firstNumber);
         boolean secondNumberValid = isANumber(secondNumber);
+
         if(!firstNumberValid) {
             results.put("firstNumberInvalid", "Invalid number");
         }
         if(!secondNumberValid) {
             results.put("secondNumberInvalid", "Invalid number");
         }
-        if (firstNumberValid && secondNumberValid) {
-            double num1 = Double.parseDouble(firstNumber);
-            double num2 = Double.parseDouble(secondNumber);
-            results.put("num1", num1 + "");
-            results.put("num2", num2 + "");
-            results.put("sum", num1 + num2 + "");
+
+        if(firstNumberValid && secondNumberValid) {
+            BigDecimal n1 = new BigDecimal(firstNumber);
+            BigDecimal n2 = new BigDecimal(secondNumber);
+            results.put("sum", n1.add(n2).toString());
         }
+
+        results.put("firstNumber", firstNumber);
+        results.put("secondNumber", secondNumber);
 
         return results;
     }
