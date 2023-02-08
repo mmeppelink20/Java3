@@ -21,7 +21,7 @@
 <body>
 <header>
     <h1>Temperature Converter</h1>
-    <p>Please select whether you would like to convert from Celsius to Fahrenheit, or Fahrenheit to Celsius</p>
+    <p>Please select the unit of the temperature you're converting</p>
 </header>
 <div>
     <form action="temp" method="post">
