@@ -17,6 +17,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .input-container {
@@ -36,7 +37,7 @@ header {
     color: cornflowerblue;
 }
 .input-container input:focus + label, .input-container input:active + label {
-    top: -0.5rem;
+    top: -0.5rem;https://github.com/mmeppelink20/Datastructures
     color: cornflowerblue;
     transform: translateY(-50%) scale(1.125);
     font-style: normal;
