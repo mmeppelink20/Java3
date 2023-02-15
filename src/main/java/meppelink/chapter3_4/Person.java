@@ -1,4 +1,4 @@
-package com.chapter3_4;
+package meppelink.chapter3_4;
 
 public class Person implements Comparable<Person> {
 

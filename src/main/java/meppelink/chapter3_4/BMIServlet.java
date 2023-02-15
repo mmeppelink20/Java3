@@ -1,4 +1,4 @@
-package com.chapter3_4;
+package meppelink.chapter3_4;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

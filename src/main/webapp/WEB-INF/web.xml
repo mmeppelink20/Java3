@@ -7,7 +7,7 @@
 
     <servlet>
         <servlet-name>BMIServlet</servlet-name>
-        <servlet-class>com.chapter3_4.BMIServlet</servlet-class>
+        <servlet-class>meppelink.chapter3_4.BMIServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
