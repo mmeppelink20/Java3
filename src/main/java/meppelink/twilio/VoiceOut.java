@@ -7,13 +7,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet(name = "SMSOut", value = "/send-message")
-public class SMSOut extends HttpServlet {
-
-
+@WebServlet(name = "VoiceOut", value = "/send-voice")
+public class VoiceOut extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("WEB-INF/message.jsp").forward(request, response);
+
     }
 
     @Override
@@ -24,12 +23,11 @@ public class SMSOut extends HttpServlet {
         Twilio twilio = new Twilio();
 
         try {
-            twilio.sendTextMessage(phone, message);
-            results.put("messageSuccess", "Message Sent");
+            twilio.sendVoiceCall(phone, message);
+            results.put("messageSuccess", "Call Sent");
         } catch(IllegalArgumentException e) {
             results.put("messageError", e.getMessage());
             results.put("phone", phone);
-            results.put("message", message);
         }
         request.setAttribute("results", results);
         request.getRequestDispatcher("WEB-INF/message.jsp").forward(request, response);

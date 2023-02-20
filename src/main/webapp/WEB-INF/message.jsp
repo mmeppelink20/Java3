@@ -24,9 +24,14 @@
 <div class="container my-4">
     <div class="row">
         <div class="col-md-6">
-            <h2>Send a message</h2>
-            <p class="lead">Enter your Valentine's phone number to send them a message</p>
-            <form action="send-message" method="post">
+            <h2>Send a message or call</h2>
+            <p class="lead">Enter a phone number to send them a call or text</p>
+            <select class="form-select w-35 mb-4" id="call-text-select">
+                <option>Text or Call</option>
+                <option value="message">Text</option>
+                <option value="voice">Call</option>
+            </select>
+            <form action="send-message" method="post" id="send-message" class="form">
                 <div class="form-group mb-2">
                     <label for="phone">Phone number</label>
                     <input type="text" id="phone" name="phone" class="form-control" value="<%= phone %>">
@@ -34,6 +39,18 @@
                 <div class="form-group mb-2">
                     <label for="message">Message</label>
                     <textarea id="message" name="message" class="form-control" rows="3"><%= message %></textarea>
+                </div>
+                <input type="submit" value="Send" class="btn btn-primary mb-2">
+            </form>
+
+            <form action="send-voice" method="post" id="send-voice" class="form">
+                <div class="form-group mb-2">
+                    <label for="phoneCall">Phone number</label>
+                    <input type="text" id="phoneCall" name="phone" class="form-control" value="<%= phone %>">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="messageCall">Message</label>
+                    <textarea id="messageCall" name="message" class="form-control" rows="3"><%= message %></textarea>
                 </div>
                 <input type="submit" value="Send" class="btn btn-primary mb-2">
             </form>
@@ -50,6 +67,22 @@
         </div>
     </div>
 </div>
+
+<style>
+    .form {
+        display: none;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#call-text-select').on('change', function(){
+            var demovalue = $(this).val();
+            $("form.form").hide();
+            $("#send-"+demovalue).show();
+        });
+    });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
