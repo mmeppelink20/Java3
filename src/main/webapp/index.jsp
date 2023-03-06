@@ -17,6 +17,13 @@
     <li><a href="add">Adding App</a></li>
     <li><a href="temp">Temperature Converter</a></li>
     <li><a href="bmi">Body Mass Index Calculator</a></li>
+    <li><a href="countries">Countries App</a></li>
+</ul>
+
+<h3>Chapters 5</h3>
+<ul>
+    <li><a href="view-users">View All Users</a></li>
+    <li><a href="signup">Add User</a></li>
 </ul>
 
 <h3>
