@@ -27,10 +27,12 @@
 </ul>
 
 <h3>
-    Twilio
+    Funstuff
 </h3>
 <ul>
     <li><a href="send-message">Send a Text Message App</a></li>
+    <li><a href="artist">Spotify App</a></li>
+
 </ul>
 <h3>
     Projects
