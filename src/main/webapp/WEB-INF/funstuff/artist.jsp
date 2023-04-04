@@ -63,7 +63,7 @@
                     <img width="150" height="150" src="https://picsum.photos/id/56/150/150" alt=" <%= artist.getName() %>">
                 <% } %>
             </td>
-            <td><a href="albums?artist=<%= artist.getId() %>"><%= artist.getName() %><a/></td>
+            <td><a href="album?artist=<%= artist.getId() %>"><%= artist.getName() %><a/></td>
             <td>
                 <% for(String genre : artist.getGenres() ) { %>
                     <%= WordUtils.capitalize(genre) %> <br />

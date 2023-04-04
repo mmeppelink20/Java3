@@ -13,7 +13,7 @@ public class ArtistServlet extends HttpServlet { // controller sends data to vie
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String q = request.getParameter("q");
         if(q == null) {
-            q = "Abba";
+            q = "John Williams";
         }
         request.setAttribute("artist", q);
         Artist[] artists = MySpotify.searchArtists(q);
