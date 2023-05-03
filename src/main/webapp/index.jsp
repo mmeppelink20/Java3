@@ -1,4 +1,9 @@
+<%@ page import="meppelink.chapter_5.User" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+    User user = (User) session.getAttribute("user");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,10 +25,19 @@
     <li><a href="countries">Countries App</a></li>
 </ul>
 
-<h3>Chapters 5</h3>
+<h3>Chapters 5 and 6</h3>
 <ul>
+    <% if(user != null && user.getPrivileges().equals("admin")){ %>
     <li><a href="view-users">View All Users</a></li>
+    <% } %>
+    <% if(user == null) { %>
     <li><a href="signup">Add User</a></li>
+    <li><a href="login">Login</a></li>
+    <% } else { %>
+    <li><a href="profile">View Profile</a></li>
+    <li><a href="logout">Logout</a></li>
+    <% } %>
+
 </ul>
 
 <h3>
@@ -33,7 +47,7 @@
     <li><a href="send-message">Send a Text Message App</a></li>
     <li><a href="artist">Spotify App</a></li>
     <li><a href="chat">Chatting App</a></li>
-
+    <li><a href="tictactoe">Tic Tac Toe</a></li>
 </ul>
 <h3>
     Projects
@@ -42,6 +56,12 @@
     <li><a href="https://github.com/mmeppelink20/2048">2048 desktop app</a></li>
     <li><a href="https://github.com/mmeppelink20/StarWarsPlanetApp">Star Wars Planet desktop app</a></li>
     <li><a href="https://github.com/mmeppelink20/JobApplicationForm">Job Application Form</a></li>
+</ul>
+<h3>
+    Final
+</h3>
+<ul>
+    <li><a href="newsLetter">News Letter</a></li>
 </ul>
 <h3>
     Socials

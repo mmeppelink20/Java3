@@ -1,4 +1,4 @@
-package meppelink.twilio;
+package meppelink.communication;
 
 import com.twilio.exception.ApiException;
 import com.twilio.rest.api.v2010.account.Call;
